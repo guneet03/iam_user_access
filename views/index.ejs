@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Access</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="toggle-wrapper">
+  <button onclick="toggleTheme()">Toggle Dark Mode</button>
+  </div>
+
+  <h1>User Access List</h1>
+  <a href="/add">Add User</a>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Access Area</th>
+        <th>Approver</th><th>Grant Date</th><th>Revoke Date</th><th>Status</th><th>Comments</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(user => { %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+          <td><%= user.access_area %></td>
+          <td><%= user.approver %></td>
+          <td><%= user.grant_date %></td>
+          <td><%= user.revoke_date %></td>
+          <td><%= user.status %></td>
+          <td><%= user.comments %></td>
+          <td>
+            <a href="/edit/<%= user.id %>">Edit</a> |
+            <a href="/delete/<%= user.id %>">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <script>
+  // Load dark mode preference
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+  }
+
+  function toggleTheme() {
+    const isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+</script>
+
+</body>
+</html>
