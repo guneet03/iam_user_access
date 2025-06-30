@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
 
-// Get all users
 router.get('/', (req, res) => {
   db.query('SELECT * FROM user_access', (err, rows) => {
     if (err) throw err;
@@ -10,12 +9,10 @@ router.get('/', (req, res) => {
   });
 });
 
-// Show add form
 router.get('/add', (req, res) => {
   res.render('add');
 });
 
-// Handle add form submission
 router.post('/add', (req, res) => {
   const { username, email, role, access_area, approver, grant_date, revoke_date, status, comments } = req.body;
   const query = `
@@ -28,7 +25,6 @@ router.post('/add', (req, res) => {
   });
 });
 
-// Show edit form
 router.get('/edit/:id', (req, res) => {
   db.query('SELECT * FROM user_access WHERE id = ?', [req.params.id], (err, rows) => {
     if (err) throw err;
@@ -36,7 +32,6 @@ router.get('/edit/:id', (req, res) => {
   });
 });
 
-// Handle edit form
 router.post('/edit/:id', (req, res) => {
   const { username, email, role, access_area, approver, grant_date, revoke_date, status, comments } = req.body;
   db.query(
@@ -49,7 +44,6 @@ router.post('/edit/:id', (req, res) => {
   );
 });
 
-// Delete user
 router.get('/delete/:id', (req, res) => {
   db.query('DELETE FROM user_access WHERE id = ?', [req.params.id], (err) => {
     if (err) throw err;

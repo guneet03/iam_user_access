@@ -1,29 +1,21 @@
 // config/db.js
+const mysql = require('mysql2');
 require('dotenv').config();
 
-const mysql = require('mysql2');
-
-//const connection = mysql.createConnection({
-  //host: 'localhost',
-  //port: 3307,               // Default port for XAMPP MySQL
-  //user: 'root',             // Default username in XAMPP
-  //password: '',             // XAMPP uses no password by default
-  //database: 'iam_user_access' // Make sure this DB exists in phpMyAdmin
-//});
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'your_database_name',
+  port: process.env.DB_PORT || 3306
 });
 
 connection.connect((err) => {
   if (err) {
-    console.error('Database connection failed:', err.stack);
+    console.error('Database connection failed: ' + err.stack);
     return;
   }
-  console.log('Connected to MySQL as ID', connection.threadId);
+  console.log('Connected to MySQL as ID ' + connection.threadId);
 });
 
 module.exports = connection;
-

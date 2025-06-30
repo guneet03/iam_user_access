@@ -1,4 +1,4 @@
-/* Base Theme using CSS Variables */
+
 :root {
   --bg-color: #ffffff;
   --text-color: #1c1c1c;
@@ -14,7 +14,7 @@
   --delete-btn-bg: #888;
 }
 
-/* Dark Mode Overrides */
+/* Dark Mode */
 .dark-mode {
   --bg-color: #121212;
   --text-color: #f5f5f5;
