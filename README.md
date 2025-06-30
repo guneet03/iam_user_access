@@ -32,9 +32,12 @@ This project is a **web-based application to manage user access permissions** wi
 
 ### Login Page
 ![Home Page](./images/homepageLighy.png)
+![Home Page](./images/homepageDark.png)
+
 
 ### Dashboard
 ![Dashboard View](./images/dashboard1.png)
+![Dashboard View](./images/dashboard2.png)
 
 ### Edit access
 ![Edit Page](./images/Edit.png)
